@@ -4,8 +4,8 @@ SET ICONVERT=D:\system\imagemagick\iconvert.exe
 SET THEME=D:\temp\carbon
 
 FOR /R "%THEME%" %%G IN (*.svg) DO (
-  echo "Converting image %%~dpnG"
-  "%ICONVERT%" -background none "%%G" "%%~dpG%%~nG.png"
+  IF NOT EXIST "%%~dpG%%~nG.png" echo "Converting image %%~dpnG"
+  IF NOT EXIST "%%~dpG%%~nG.png" "%ICONVERT%" -background none "%%G" "%%~dpG%%~nG.png"
 )
 FOR /D %%i IN ("%THEME%\*.*") DO (
   IF EXIST "%THEME%\%%~ni\art\system.png" echo "Creating launching image for %%~dpni"
