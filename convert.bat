@@ -1,7 +1,7 @@
 @echo off
 
-SET ICONVERT=D:\system\imagemagick\iconvert.exe
-SET THEME=D:\temp\carbon
+SET ICONVERT=C:\imagemagick\iconvert.exe
+SET THEME=C:\temp\carbon
 SET BACKGROUND=%THEME%\art\carbon_fiber.png
 REM SET BACKGROUND=%THEME%\art\carbon_black.png
 SET FONT=%THEME%\art\Cabin-Bold.ttf
