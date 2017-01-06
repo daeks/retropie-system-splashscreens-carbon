@@ -6,6 +6,8 @@ SET BACKGROUND=%THEME%\art\carbon_fiber.png
 REM SET BACKGROUND=%THEME%\art\carbon_black.png
 SET FONT=%THEME%\art\Cabin-Bold.ttf
 
+IF EXIST "%THEME%\_OUTPUT" DEL /Q "%THEME%\_OUTPUT"
+
 FOR /R "%THEME%" %%G IN (*.svg) DO (
   IF NOT EXIST "%%~dpG%%~nG.png" echo "Converting image %%~dpnG"
   REM CONVERT SVG TO PNG
@@ -21,4 +23,11 @@ FOR /D %%i IN ("%THEME%\*.*") DO (
   IF EXIST "%THEME%\%%~ni\launching.png" "%ICONVERT%" "%THEME%\%%~ni\launching.png" -gravity center -font "%FONT%" -weight 700 -pointsize 14 -fill gray -annotate +0+200 "PRESS A BUTTON TO CONFIGURE\nLAUNCH OPTIONS" "%THEME%\%%~ni\launching.png"
   REM COMPRESS PNG
   IF EXIST "%THEME%\%%~ni\launching.png" "%ICONVERT%" "%THEME%\%%~ni\launching.png" -quality 80 "%THEME%\%%~ni\launching.png"
+)
+
+IF EXIST "%THEME%\_OUTPUT" DEL /Q "%THEME%\_OUTPUT"
+MKDIR "%THEME%\_OUTPUT"
+FOR /D %%i IN ("%THEME%\*.*") DO (
+  IF EXIST "%THEME%\%%~ni\launching.png" MKDIR "%THEME%\_OUTPUT\%%~ni"
+  MOVE "%THEME%\%%~ni\launching.png" "%THEME%\_OUTPUT\%%~ni"
 )
