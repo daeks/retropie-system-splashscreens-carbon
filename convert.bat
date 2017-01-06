@@ -5,7 +5,7 @@ SET THEME=D:\temp\carbon
 
 FOR /R "%THEME%" %%G IN (*.svg) DO (
   echo "Converting image %%~dpnG"
-  REM "%ICONVERT%" -background none "%%G" "%%~dpG%%~nG.png"
+  "%ICONVERT%" -background none "%%G" "%%~dpG%%~nG.png"
 )
 FOR /D %%i IN ("%THEME%\*.*") DO (
   IF EXIST "%THEME%\%%~ni\art\system.png" echo "Creating launching image for %%~dpni"
